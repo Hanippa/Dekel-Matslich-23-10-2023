@@ -9,18 +9,20 @@ import {
   fetchWeatherForecastStart,
   fetchWeatherForecastSuccess,
 } from "./weatherForecastSlice";
-
+import getShortenedDay from '../helperFunctions/dateFunctions/getShortenedDay';
+import toast from 'react-hot-toast';
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchCurrentWeather = (cityKey, cityName) => async (dispatch) => {
   dispatch(fetchCurrentWeatherStart(cityName));
+  toast('fetching');
   fetch(
     `${BASE_URL}/currentconditions/v1/${cityKey}?apikey=${API_KEY}&metric=${true}&details=true`
   )
     .then((response) => {
       if (!response.ok) {
-        console.log("error 🐱‍🐉", response);
+        dispatch(fetchCurrentWeatherFailure(response));
       }
       return response.json();
     })
@@ -43,21 +45,30 @@ export const fetchCurrentWeather = (cityKey, cityName) => async (dispatch) => {
 
 export const fetchWeatherForecast = (cityKey) => async (dispatch) => {
   dispatch(fetchWeatherForecastStart());
-
   fetch(
-    `${BASE_URL}/forecasts/v1/daily/5day/${cityKey}?apikey=${API_KEY}&metric=${true}`
+    `${BASE_URL}/forecasts/v1/daily/5day/${cityKey}?apikey=${API_KEY}&metric=${true}&details=true`
   )
     .then((response) => {
       if (!response.ok) {
-        console.log("error 🐱‍🐉", response);
+        dispatch(fetchWeatherForecastFailure(response));
       }
       return response.json();
     })
-    .then((weatherForecast) => {
-      dispatch(fetchWeatherForecastSuccess(weatherForecast));
+    .then((weatherForecastData) => {
+      const FilteredData = weatherForecastData.DailyForecasts.map((forecast) => {
+        return {
+          Date: forecast.Date,
+          Day:getShortenedDay(forecast.Date),
+          Temperature : forecast.Temperature.Maximum.Value,
+          iconNumber : forecast.Day.Icon,
+          Text: forecast.Day.ShortPhrase,
+          Sunrise : forecast.Sun.Rise,
+          Sunset : forecast.Sun.Set
+        }
+      });
+      dispatch(fetchWeatherForecastSuccess(FilteredData));
     })
     .catch((error) => {
-      console.log(error);
       dispatch(fetchWeatherForecastFailure(error.message));
     });
 };

@@ -1,5 +1,6 @@
 import { fetchCurrentWeather, fetchWeatherForecast } from "./redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import { Toaster } from 'react-hot-toast';
 import { useEffect } from "react";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
@@ -23,14 +24,15 @@ function App() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(fetchCurrentWeather(215854 , 'Tel Aviv'));
-    // dispatch(fetchWeatherForecast(215854));
+    dispatch(fetchCurrentWeather(215854 , 'Tel Aviv, Israel'));
+    dispatch(fetchWeatherForecast(215854));
   }, [dispatch]);
 
   return (
     <>
     <NavBar/>
     <Home/>
+    <Toaster/>
     </>
   )
    

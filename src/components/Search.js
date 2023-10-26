@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch } from "react-redux";
 import searchIcon from "../assets/utility-icons/search.svg";
-import { fetchCurrentWeather } from "../redux/actions";
+import { fetchCurrentWeather, fetchWeatherForecast } from "../redux/actions";
 export const Search = () => {
   const [autoCompleteOptions, setAutoCompleteOptions] = useState([]);
 
@@ -23,7 +23,9 @@ export const Search = () => {
   };
 
   const handleOptionSelected = (option) => {
-    dispatch(fetchCurrentWeather(option.Key , option.AdministrativeArea.LocalizedName));
+    console.log(option);
+    dispatch(fetchCurrentWeather(option.Key , `${option.AdministrativeArea.LocalizedName}, ${option.Country.LocalizedName}`));
+    dispatch(fetchWeatherForecast(option.Key));
   };
 
   useEffect(() => {

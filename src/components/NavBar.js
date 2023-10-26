@@ -1,5 +1,6 @@
-import wordLogo from "../assets/wordLogo.png";
-import { useState } from "react";
+import Logo from "../assets/Logo.png";
+import AbraShape1 from "../assets/abra-shape-1.png"
+import AbraShape2 from "../assets/abra-shape-2.png"
 const NavBar = () => {
   const handleShowMenu = () => {
     document.getElementById("menu").classList.toggle("hidden");
@@ -8,15 +9,19 @@ const NavBar = () => {
   return (
     <nav id="navbar" className="w-full relative h-14 flex items-center ">
       <div className="px-4 border-none relative border-gray-200 mx-auto flex w-full justify-between items-center">
-        <a to={"/"} className="flex font-extrabold text-xl">
-          <img className="w-44 px-4" src={wordLogo} alt="I-Checkin word logo" />
+        <a to={"/"} className="flex justify-center items-center font-rubik font-light text-xl h-full">
+          <img className="w-20 px-4" src={Logo} alt="abra weather logo" />
+          <p className="text-2xl">abra weather</p>
         </a>
         <div
           id="menu"
           className="absolute left-0 md:relative md:w-auto border md:rounded-none items-center md:py-0 py-5 md:shadow-none shadow-xl border-gray-200 md:border-transparent w-full z-20 md:flex md:bg-transparent md:top-auto top-0 md:mt-0 mt-14 bg-white hidden"
         >
           <nav className="md:space-x-6 lg:space-x-6 flex md:flex-row flex-col h-full font-medium">
-             <p className="">Home</p>
+          <div className="group flex justify-center items-center cursor-pointer">
+          <p className="font-rubik font-light text-xl z-10">Home</p>
+          <img className="w-9 absolute opacity-0 group-hover:opacity-25 transition-opacity duration-300 ease-in-out" src={AbraShape1} alt="hover decor shape"/>
+          </div>
              
           </nav>
           <div className="w-1 border-l border-gray-200 h-5 md:ml-6 lg:ml-10" />
@@ -24,7 +29,10 @@ const NavBar = () => {
           <div className="h-full font-medium flex items-center md:flex-row flex-col md:pl-3 lg:pl-3 mx-3">
          
           </div>
-          <p className="">Favorites</p>
+          <div className="group flex justify-center items-center cursor-pointer">
+          <p className="font-rubik font-light text-xl z-10">Favorites</p>
+          <img className="w-9 absolute opacity-0 group-hover:opacity-25 transition-opacity duration-300 ease-in-out" src={AbraShape2} alt="hover decor shape"/>
+          </div>
         </div>
         <div
           onClick={handleShowMenu}
