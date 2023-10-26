@@ -46,7 +46,7 @@ export const Search = () => {
   return (
     <div className="w-full h-16 relative flex items-center">
       <img
-        className="absolute right-4 w-7 m-auto bg-white cursor-pointer z-20"
+        className="absolute right-4 w-7 m-auto bg-white cursor-pointer z-30"
         onClick={() => serachInput.focus()}
         src={searchIcon}
         alt="search icon"
@@ -58,10 +58,10 @@ export const Search = () => {
         id="search-input"
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        className="text-2xl p-8 font-thin w-full h-full rounded-lg outline-none z-10"
+        className="text-2xl p-8 font-thin w-full h-full rounded-lg outline-none z-20"
       />
       {autoCompleteOptions?.length > 0 && searchInputFocused && (
-        <div className="w-full h-fit bg-white rounded-lg absolute top-14 drop-shadow-md p-8 pb-0">
+        <div className="w-full h-fit bg-white rounded-lg absolute top-14 drop-shadow-md p-8 pb-0 z-10">
           {autoCompleteOptions.map((option , index) => {
             return (
               <div key={index} onMouseDown={() => handleOptionSelected(option)} className="p-4 border-b last:border-b-0 border-abraBlue border-opacity-10 cursor-pointer">

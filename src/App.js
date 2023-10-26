@@ -23,8 +23,8 @@ function App() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCurrentWeather(215854 , 'Tel Aviv'));
-    dispatch(fetchWeatherForecast(215854));
+    // dispatch(fetchCurrentWeather(215854 , 'Tel Aviv'));
+    // dispatch(fetchWeatherForecast(215854));
   }, [dispatch]);
 
   return (

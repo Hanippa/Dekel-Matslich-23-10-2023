@@ -13,21 +13,28 @@ import {
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-export const fetchCurrentWeather = (cityKey , cityName) => async (dispatch) => {
+export const fetchCurrentWeather = (cityKey, cityName) => async (dispatch) => {
   dispatch(fetchCurrentWeatherStart(cityName));
   fetch(
     `${BASE_URL}/currentconditions/v1/${cityKey}?apikey=${API_KEY}&metric=${true}&details=true`
   )
     .then((response) => {
       if (!response.ok) {
-        console.log("error 🐱‍🐉" , response);
+        console.log("error 🐱‍🐉", response);
       }
       return response.json();
     })
     .then((currentWeatherData) => {
-      console.log(currentWeatherData);
-      const FilteredData = {Temperature : currentWeatherData[0].Temperature , iconNumber : currentWeatherData[0].WeatherIcon , UVindex: currentWeatherData[0].UVIndexText , }
-      dispatch(fetchCurrentWeatherSuccess(currentWeatherData));
+      const FilteredData = {
+        Temperature: currentWeatherData[0].Temperature,
+        iconNumber: currentWeatherData[0].WeatherIcon,
+        UVindex: currentWeatherData[0].UVIndexText,
+        ApparentTemperature: currentWeatherData[0].ApparentTemperature,
+        Text:currentWeatherData[0].WeatherText,
+        Humidity : currentWeatherData[0].RelativeHumidity,
+        WindSpeed : currentWeatherData[0].Wind.Speed,
+      };
+      dispatch(fetchCurrentWeatherSuccess(FilteredData));
     })
     .catch((error) => {
       dispatch(fetchCurrentWeatherFailure(error.message));
