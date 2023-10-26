@@ -10,19 +10,17 @@ import {
   fetchWeatherForecastSuccess,
 } from "./weatherForecastSlice";
 import getShortenedDay from '../helperFunctions/dateFunctions/getShortenedDay';
-import toast from 'react-hot-toast';
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchCurrentWeather = (cityKey, cityName) => async (dispatch) => {
   dispatch(fetchCurrentWeatherStart(cityName));
-  toast('fetching');
   fetch(
     `${BASE_URL}/currentconditions/v1/${cityKey}?apikey=${API_KEY}&metric=${true}&details=true`
   )
     .then((response) => {
       if (!response.ok) {
-        dispatch(fetchCurrentWeatherFailure(response));
+        dispatch(fetchCurrentWeatherFailure(response.statusText));
       }
       return response.json();
     })
@@ -50,7 +48,7 @@ export const fetchWeatherForecast = (cityKey) => async (dispatch) => {
   )
     .then((response) => {
       if (!response.ok) {
-        dispatch(fetchWeatherForecastFailure(response));
+        dispatch(fetchWeatherForecastFailure(response.statusText));
       }
       return response.json();
     })

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import {useDispatch } from "react-redux";
 import searchIcon from "../assets/utility-icons/search.svg";
 import { fetchCurrentWeather, fetchWeatherForecast } from "../redux/actions";
+import { toast } from "react-hot-toast";
 export const Search = () => {
   const [autoCompleteOptions, setAutoCompleteOptions] = useState([]);
 
@@ -23,7 +24,7 @@ export const Search = () => {
   };
 
   const handleOptionSelected = (option) => {
-    console.log(option);
+    setSearchQuery('');
     dispatch(fetchCurrentWeather(option.Key , `${option.AdministrativeArea.LocalizedName}, ${option.Country.LocalizedName}`));
     dispatch(fetchWeatherForecast(option.Key));
   };
@@ -33,12 +34,17 @@ export const Search = () => {
       fetch(
         `${BASE_URL}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${searchQuery}`
       )
-        .then((res) => res.json())
+        .then((result) => {
+          if(!result.ok){
+            toast.error('failed to search 🌧')
+          }
+          return result.json()}
+          )
         .then((autocomplete) => {
           setAutoCompleteOptions(autocomplete);
         })
-        .catch((e) => {
-          console.log(e);
+        .catch((error) => {
+          toast.error(error.message)
         });
     } else {
       setAutoCompleteOptions([]);
