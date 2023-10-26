@@ -10,6 +10,7 @@ module.exports = {
         primary: '#F2F8FF',
         background:'#F3F6FA',
         grayish: "#B8B8B8",
+        abraBlue: "#121F3F",
       },
       screens: {
         xs: "480px",

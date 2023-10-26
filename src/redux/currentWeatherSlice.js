@@ -3,12 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const currentWeatherSlice = createSlice({
   name: "currentWeather",
   initialState: {
+    city:'',
     data: null,
     loading: false,
     error: null,
   },
   reducers: {
-    fetchCurrentWeatherStart: (state) => {
+    fetchCurrentWeatherStart: (state , action) => {
+      state.city = action.payload;
       state.loading = true;
       state.error = null;
     },
