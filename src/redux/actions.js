@@ -16,16 +16,18 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 export const fetchCurrentWeather = (cityKey , cityName) => async (dispatch) => {
   dispatch(fetchCurrentWeatherStart(cityName));
   fetch(
-    `${BASE_URL}/currentconditions/v1/${cityKey}?apikey=${API_KEY}&metric=${true}`
+    `${BASE_URL}/currentconditions/v1/${cityKey}?apikey=${API_KEY}&metric=${true}&details=true`
   )
     .then((response) => {
       if (!response.ok) {
-        console.log("error 🐱‍🐉");
+        console.log("error 🐱‍🐉" , response);
       }
       return response.json();
     })
-    .then((currentWeather) => {
-      dispatch(fetchCurrentWeatherSuccess(currentWeather));
+    .then((currentWeatherData) => {
+      console.log(currentWeatherData);
+      const FilteredData = {Temperature : currentWeatherData[0].Temperature , iconNumber : currentWeatherData[0].WeatherIcon , UVindex: currentWeatherData[0].UVIndexText , }
+      dispatch(fetchCurrentWeatherSuccess(currentWeatherData));
     })
     .catch((error) => {
       dispatch(fetchCurrentWeatherFailure(error.message));
@@ -40,7 +42,7 @@ export const fetchWeatherForecast = (cityKey) => async (dispatch) => {
   )
     .then((response) => {
       if (!response.ok) {
-        console.log("error 🐱‍🐉");
+        console.log("error 🐱‍🐉", response);
       }
       return response.json();
     })
