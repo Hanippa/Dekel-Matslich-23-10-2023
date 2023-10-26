@@ -2,6 +2,7 @@ import { fetchCurrentWeather, fetchWeatherForecast } from "./redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import NavBar from "./components/NavBar";
+import Home from "./pages/Home";
 
 function App() {
   const currentWeather = useSelector((state) => state.currentWeather.data);
@@ -26,10 +27,14 @@ function App() {
     dispatch(fetchWeatherForecast(100));
   }, [dispatch]);
 
-  return <div className="App">
+  return (
+    <>
     <NavBar/>
-    <h1 className="text-9xl text-red-400">hello world</h1>
-  </div>;
+    <Home/>
+    </>
+  )
+   
+
 }
 
 export default App;

@@ -6,7 +6,7 @@ const NavBar = () => {
   };
 
   return (
-    <div id="navbar" className="w-full relative h-14 flex items-center ">
+    <nav id="navbar" className="w-full relative h-14 flex items-center ">
       <div className="px-4 border-none relative border-gray-200 mx-auto flex w-full justify-between items-center">
         <a to={"/"} className="flex font-extrabold text-xl">
           <img className="w-44 px-4" src={wordLogo} alt="I-Checkin word logo" />
@@ -61,7 +61,7 @@ const NavBar = () => {
           </svg>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
