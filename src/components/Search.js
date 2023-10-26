@@ -23,8 +23,7 @@ export const Search = () => {
   };
 
   const handleOptionSelected = (option) => {
-    console.log('fetching' ,option);
-    dispatch(fetchCurrentWeather(option.key , option.AdministrativeArea.LocalizedName));
+    dispatch(fetchCurrentWeather(option.Key , option.AdministrativeArea.LocalizedName));
   };
 
   useEffect(() => {
