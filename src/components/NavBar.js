@@ -20,7 +20,7 @@ const NavBar = () => {
         </NavLink>
         <div
           id="menu"
-          className="absolute left-0 md:relative md:w-auto border md:rounded-none items-center md:py-0 py-5 md:shadow-none shadow-xl border-gray-200 md:border-transparent w-full z-20 md:flex md:bg-transparent md:top-auto top-0 md:mt-0 mt-14 bg-white hidden"
+          className="absolute left-0 md:relative md:w-auto border md:rounded-none items-center md:py-0 py-5 md:shadow-none shadow-xl border-gray-200 md:border-transparent w-full z-40 md:flex md:bg-transparent md:top-auto top-0 md:mt-0 mt-14 bg-white dark:bg-darkSecondary hidden"
         >
                 <DarkModeSwitch/>
           <nav className="md:space-x-6 lg:space-x-6 flex md:flex-row flex-col h-full font-medium">
@@ -47,7 +47,7 @@ const NavBar = () => {
         </div>
         <div
           onClick={handleShowMenu}
-          className="md:hidden mx-4 select-none block cursor-pointer hover:bg-gray-100 p-1.5 rounded-md"
+          className="md:hidden mx-4 select-none block cursor-pointer p-1.5 rounded-md dark:invert"
         >
           <svg
             width="24"

@@ -7,7 +7,7 @@ export const Forecast = () => {
   return (
     <div
     id="forecast-container"
-    className="flex justify-around items-center w-full h-2/5 rounded-lg bg-white dark:bg-darkSecondary"
+    className="flex flex-col lg:flex-row justify-around items-center w-full lg:w-full h-2/5 rounded-lg bg-white dark:bg-darkSecondary"
   >
 
 {weatherForecast && weatherForecast.map((forecast , index) => {
