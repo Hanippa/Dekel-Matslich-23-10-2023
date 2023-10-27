@@ -1,4 +1,7 @@
-# Abra Weather
+
+## Abra Weather
+<img src="https://abra-weather.com/static/media/Logo.5c0ac529204649976918.png" alt="Abra Weather Logo" width="100">
+-
 
 **Abra Weather** is a simple weather website developed as a task for Abra web and mobile developement, designed to provide users with up-to-date weather information in an easy-to-use format.
 
