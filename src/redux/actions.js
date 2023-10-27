@@ -14,7 +14,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchCurrentWeather = (cityKey, cityName) => async (dispatch) => {
-  dispatch(fetchCurrentWeatherStart(cityName));
+  dispatch(fetchCurrentWeatherStart({ city :cityName , key :cityKey}));
   fetch(
     `${BASE_URL}/currentconditions/v1/${cityKey}?apikey=${API_KEY}&metric=${true}&details=true`
   )

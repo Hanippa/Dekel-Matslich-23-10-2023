@@ -7,11 +7,14 @@ import Sun from "../assets/utility-icons/sun.svg";
 import Drops from "../assets/utility-icons/drops.svg";
 import Sunrise from "../assets/utility-icons/sunrise.svg";
 import Sunset from "../assets/utility-icons/sunset.svg";
+import AddToFavorites from "./AddToFavorites";
 
 export const CurrentWeatherDetails = () => {
   const [currentTime, setCurrentTime] = useState(getCurrentTime());
 
   const cityName = useSelector((state) => state.currentWeather.city);
+  const cityKey = useSelector((state) => state.currentWeather.key);
+
   const currentWeather = useSelector((state) => state.currentWeather.data);
   const currentWeatherLoading = useSelector(
     (state) => state.currentWeather.loading
@@ -39,7 +42,8 @@ export const CurrentWeatherDetails = () => {
   }, []);
 
   return (
-    <div id="details-container" className="w-full h-full rounded-lg bg-white">
+    <div id="details-container" className="w-full h-full rounded-lg bg-white relative">
+      <AddToFavorites item={{key : cityKey, name : cityName}}/>
       <div className="h-3/5 w-full flex flex-col justify-around">
         <h2 className="text-4xl">{cityName}</h2>
         <p className="text-2xl font-light">{currentTime}</p>
