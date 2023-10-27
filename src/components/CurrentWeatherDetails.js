@@ -33,7 +33,7 @@ export const CurrentWeatherDetails = () => {
   }, []);
 
   return (
-    <div id="details-container" className="w-full h-96 lg:h-full rounded-lg bg-white dark:bg-darkSecondary relative pt-4 ">
+    <div id="details-container" className="w-full h-96 lg:h-full rounded-lg bg-white dark:bg-darkSecondary relative pt-8 ">
       <UnitToggle cityKey={cityKey}/>
       <AddToFavorites item={{key : cityKey, name : cityName}}/>
       <div className="h-3/5 w-full flex flex-col justify-around">

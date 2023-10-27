@@ -15,7 +15,7 @@ export const UnitToggle = ({cityKey}) => {
   return (
     <div className="absolute left-0 top-2 w-28">
          <div className="flex justify-center items-center gap-2 mx-8">
-         <p className="text-sm">F°</p>
+         <p className="text-sm dark:text-white">F°</p>
       <div >
       <label className="relative inline-flex items-center cursor-pointer">
         <input
@@ -28,7 +28,7 @@ export const UnitToggle = ({cityKey}) => {
         <div className="w-9 h-3 bg-abraBlue rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-2 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-abraBlue"></div>
       </label>
       </div>
-      <p className="text-sm">C°</p>
+      <p className="text-sm dark:text-white">C°</p>
     </div>
     </div>
   );
