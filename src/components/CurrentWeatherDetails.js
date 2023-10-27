@@ -84,14 +84,14 @@ export const CurrentWeatherDetails = () => {
             <div className="flex flex-col justify-center items-center">
               <img className="w-4 2xl:w-6 dark:invert" src={Sunrise} alt="sunrise icon"/>
               <p className="text-md 2xl:text-xl font-light dark:text-white">sunrise</p>
-              <p className="font-light text-md 2xl:text-xl dark:text-white">
+              <p className="font-light text-md 2xl:text-lg dark:text-white">
                 {weatherForecast && getTimeFormat(weatherForecast[0].Sunrise)}
               </p>
             </div>
             <div className="flex flex-col justify-center items-center">
               <img className="w-4 2xl:w-6 dark:invert" src={Sunset} alt="sunset icon"/>
               <p className="text-md 2xl:text-xl font-light dark:text-white">sunset</p>
-              <p className="text-md 2xl:text-xl font-light dark:text-white">
+              <p className="text-md 2xl:text-lg font-light dark:text-white">
                 {weatherForecast && getTimeFormat(weatherForecast[0].Sunset)}
               </p>
             </div>
