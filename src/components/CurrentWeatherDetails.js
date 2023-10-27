@@ -16,20 +16,8 @@ export const CurrentWeatherDetails = () => {
   const cityKey = useSelector((state) => state.currentWeather.key);
 
   const currentWeather = useSelector((state) => state.currentWeather.data);
-  const currentWeatherLoading = useSelector(
-    (state) => state.currentWeather.loading
-  );
-  const currentWeatherError = useSelector(
-    (state) => state.currentWeather.error
-  );
-
   const weatherForecast = useSelector((state) => state.weatherForecast.data);
-  const weatherForecastLoading = useSelector(
-    (state) => state.weatherForecast.loading
-  );
-  const weatherForecastError = useSelector(
-    (state) => state.weatherForecast.error
-  );
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -90,14 +78,14 @@ export const CurrentWeatherDetails = () => {
             className="w-2/5 h-4/5 bg-primary rounded-lg flex items-center justify-around"
           >
             <div className="flex flex-col justify-center items-center">
-              <img src={Sunrise} />
+              <img src={Sunrise} alt="sunrise icon"/>
               <p className="font-light">sunrise</p>
               <p className="font-light">
                 {weatherForecast && getTimeFormat(weatherForecast[0].Sunrise)}
               </p>
             </div>
             <div className="flex flex-col justify-center items-center">
-              <img src={Sunset} />
+              <img src={Sunset} alt="sunset icon"/>
               <p className="font-light">sunset</p>
               <p className="font-light">
                 {weatherForecast && getTimeFormat(weatherForecast[0].Sunset)}

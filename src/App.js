@@ -32,16 +32,15 @@ function App() {
   });
 
   const getUserGeolocation = () => {
-    toast.loading('Loading...' , {id : 'geoloading'});
+    toast.loading("Loading...", { id: "geoloading" });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          
           const { latitude, longitude } = position.coords;
           setLocation({ latitude, longitude });
         },
         (error) => {
-          toast.dismiss('geoloading')
+          toast.dismiss("geoloading");
           toast.error("Geolocation error");
         }
       );
@@ -70,44 +69,53 @@ function App() {
             key: locationData.Key,
             city: `${locationData.EnglishName}, ${locationData.Country.EnglishName}`,
           });
+        })
+        .catch((error) => {
+          toast.error(`failed to fetch current location ${error.message}`);
         });
     }
-  }, [location]);
+  }, [location, API_KEY, BASE_URL]);
 
   useEffect(() => {
     dispatch(fetchCurrentWeather(dispatchLocation.key, dispatchLocation.city));
     dispatch(fetchWeatherForecast(dispatchLocation.key));
-  }, [dispatchLocation]);
+  }, [dispatchLocation, dispatch]);
 
   useEffect(() => {
     if (weatherForecastLoading) {
-      const loadingToast = toast.loading("Loading weather forecast...", {
+      toast.loading("Loading weather forecast...", {
+        id: "loading-forecast-toast",
         duration: 0,
         icon: "🌨",
       });
     } else {
-      toast.dismiss("loading-toast");
+      toast.dismiss("loading-forecast-toast");
     }
   }, [weatherForecastLoading]);
 
   useEffect(() => {
     if (currentWeatherLoading) {
       const loadingToast = toast.loading("Loading current weather...", {
+        id: "loading-current-toast",
         duration: 0,
         icon: "🌬",
       });
       return () => toast.dismiss(loadingToast.id);
     } else {
-      toast.dismiss("loading-toast");
+      toast.dismiss("loading-current-toast");
     }
   }, [currentWeatherLoading]);
 
   useEffect(() => {
-    toast.error("Failed to load weather forecast 😓");
+    if (currentWeatherError) {
+      toast.error("Failed to load weather forecast 😓");
+    }
   }, [weatherForecastError]);
 
   useEffect(() => {
-    toast.error("Failed to load current weather 😟");
+    if (currentWeatherError) {
+      toast.error("Failed to load current weather 😟");
+    }
   }, [currentWeatherError]);
 
   return (

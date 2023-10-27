@@ -10,8 +10,6 @@ export const Search = () => {
   const serachInput = document.getElementById("search-input");
   const [searchInputFocused, setSearchInputFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const API_KEY = process.env.REACT_APP_API_KEY;
 
   const dispatch = useDispatch();
 
@@ -30,6 +28,8 @@ export const Search = () => {
   };
 
   useEffect(() => {
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const API_KEY = process.env.REACT_APP_API_KEY;
     if (searchQuery) {
       fetch(
         `${BASE_URL}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${searchQuery}`

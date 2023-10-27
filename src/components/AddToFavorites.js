@@ -13,7 +13,7 @@ export default function AddToFavorites({ item }) {
   useEffect(() => {
     setIsFavorite(favorites.map(favorite => favorite.key).includes(item.key));
     localStorage.setItem('userFavorites', JSON.stringify(favorites));
-  }, [favorites , currentWeather]);
+  }, [favorites , currentWeather , item]);
 
   const handleFavorite = () => {
     if (isFavorite) {
@@ -28,12 +28,12 @@ export default function AddToFavorites({ item }) {
       {!isFavorite ? (
         <>
           <p className="text-lg font-light">Add to Favorites</p>
-          <img className="w-4" src={Star} />
+          <img className="w-4" src={Star} alt="star icon"/>
         </>
       ) : (
         <>
           <p className="text-lg font-light">Remove from Favorites</p>
-          <img className="w-4" src={Star} />
+          <img className="w-4" src={Star} alt="star icon"/>
         </>
       )}
     </div>

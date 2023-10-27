@@ -10,13 +10,6 @@ import {
 
 export const Chart = () => {
     const weatherForecast = useSelector((state) => state.weatherForecast.data);
-    const weatherForecastLoading = useSelector(
-      (state) => state.weatherForecast.loading
-    );
-    const weatherForecastError = useSelector(
-      (state) => state.weatherForecast.error
-    );
-
   return (
     <div
       id="chart-container"
