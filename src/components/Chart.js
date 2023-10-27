@@ -13,7 +13,7 @@ export const Chart = () => {
   return (
     <div
       id="chart-container"
-      className="w-full h-3/5 rounded-lg bg-white flex justify-center items-end"
+      className="w-full h-3/5 rounded-lg bg-white dark:bg-darkSecondary flex justify-center items-end"
     >
       <ResponsiveContainer width="90%" height="60%">
         <AreaChart

@@ -10,9 +10,9 @@ function Favorites() {
   return (
     <div
       id="not-found-container"
-      className="w-screen h-screenNav bg-background p-8 font-rubik"
+      className="w-screen h-screenNav bg-background dark:bg-darkBackgroud p-8 font-rubik"
     >
-      <div className="h-full w-full bg-white rounded-lg flex justify-center flex-wrap items-center gap-8">
+      <div className="h-full w-full bg-white dark:bg-darkSecondary rounded-lg flex justify-center flex-wrap items-center gap-8">
         {favorites.length > 0 && favorites.map((favorite , index) => {
             return (
                 <Favorite name={favorite.name} Citykey={favorite.key} key={index}/>

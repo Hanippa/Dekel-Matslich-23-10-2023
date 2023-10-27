@@ -5,7 +5,7 @@ import { CurrentWeatherDetails } from "../components/CurrentWeatherDetails";
 
 const Home = () => {
   return (
-    <main className="font-rubik font-normal text-center bg-background w-screen h-screenNav flex flex-col md:flex-row p-8 gap-4 md:gap-0">
+    <main className="font-rubik font-normal text-center bg-background dark:bg-darkBackgroud w-screen h-screenNav flex flex-col md:flex-row p-8 gap-4 md:gap-0">
       <section
         id="left-section"
         className="w-full md:w-1/4 h-full flex flex-col gap-4 min-w-fit"

@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,js}"],
+  darkMode: 'class',
   theme: {
     extend: {
       height:{
@@ -11,6 +12,11 @@ module.exports = {
         background:'#F3F6FA',
         grayish: "#B8B8B8",
         abraBlue: "#121F3F",
+        abraOrange : "#FF7748",
+        darkPrimary: "#272727",
+        invertedPrimary: "#e3e3e3",
+        darkSecondary : "#1C1C1C",
+        darkBackgroud : "#000000"
       },
       screens: {
         xs: "480px",

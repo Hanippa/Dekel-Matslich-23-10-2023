@@ -27,13 +27,13 @@ export default function AddToFavorites({ item }) {
     <div className="flex justify-center items-center absolute right-4" onClick={handleFavorite}>
       {!isFavorite ? (
         <>
-          <p className="text-lg font-light">Add to Favorites</p>
-          <img className="w-4" src={Star} alt="star icon"/>
+          <p className="text-lg font-light dark:text-white">Add to Favorites</p>
+          <img className="w-4 dark:invert" src={Star} alt="star icon"/>
         </>
       ) : (
         <>
-          <p className="text-lg font-light">Remove from Favorites</p>
-          <img className="w-4" src={Star} alt="star icon"/>
+          <p className="text-lg font-light dark:text-white">Remove from Favorites</p>
+          <img className="w-4 dark:invert" src={Star} alt="star icon"/>
         </>
       )}
     </div>
