@@ -7,11 +7,13 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Favorites from "./pages/Favorites";
+import { selectMetric } from "./redux/metricSlice";
 
 function App() {
   const dispatch = useDispatch();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const API_KEY = process.env.REACT_APP_API_KEY;
+  const metric = useSelector(selectMetric);
 
   const currentWeatherLoading = useSelector(
     (state) => state.currentWeather.loading
@@ -78,8 +80,8 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCurrentWeather(dispatchLocation.key, dispatchLocation.city));
-    dispatch(fetchWeatherForecast(dispatchLocation.key));
-  }, [dispatchLocation, dispatch]);
+    dispatch(fetchWeatherForecast(dispatchLocation.key, metric));
+  }, [dispatchLocation, dispatch, metric]);
 
   useEffect(() => {
     if (weatherForecastLoading) {

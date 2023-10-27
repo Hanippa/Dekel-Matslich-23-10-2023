@@ -4,12 +4,15 @@ import {useDispatch } from "react-redux";
 import searchIcon from "../assets/utility-icons/search.svg";
 import { fetchCurrentWeather, fetchWeatherForecast } from "../redux/actions";
 import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { selectMetric } from "../redux/metricSlice";
+
 export const Search = () => {
   const [autoCompleteOptions, setAutoCompleteOptions] = useState([]);
-
   const serachInput = document.getElementById("search-input");
   const [searchInputFocused, setSearchInputFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const metric = useSelector(selectMetric);
 
   const dispatch = useDispatch();
 
@@ -24,7 +27,7 @@ export const Search = () => {
   const handleOptionSelected = (option) => {
     setSearchQuery('');
     dispatch(fetchCurrentWeather(option.Key , `${option.AdministrativeArea.LocalizedName}, ${option.Country.LocalizedName}`));
-    dispatch(fetchWeatherForecast(option.Key));
+    dispatch(fetchWeatherForecast(option.Key , metric));
   };
 
   useEffect(() => {

@@ -8,6 +8,8 @@ import Drops from "../assets/utility-icons/drops.svg";
 import Sunrise from "../assets/utility-icons/sunrise.svg";
 import Sunset from "../assets/utility-icons/sunset.svg";
 import AddToFavorites from "./AddToFavorites";
+import { UnitToggle } from "./UnitToggle";
+import { selectMetric } from "../redux/metricSlice";
 
 export const CurrentWeatherDetails = () => {
   const [currentTime, setCurrentTime] = useState(getCurrentTime());
@@ -18,6 +20,7 @@ export const CurrentWeatherDetails = () => {
   const currentWeather = useSelector((state) => state.currentWeather.data);
   const weatherForecast = useSelector((state) => state.weatherForecast.data);
 
+  const metric = useSelector(selectMetric);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -31,6 +34,7 @@ export const CurrentWeatherDetails = () => {
 
   return (
     <div id="details-container" className="w-full h-96 lg:h-full rounded-lg bg-white dark:bg-darkSecondary relative pt-4 ">
+      <UnitToggle cityKey={cityKey}/>
       <AddToFavorites item={{key : cityKey, name : cityName}}/>
       <div className="h-3/5 w-full flex flex-col justify-around">
         <h2 className="text-2xl 2xl:text-4xl dark:text-white">{cityName}</h2>
@@ -45,14 +49,14 @@ export const CurrentWeatherDetails = () => {
           />
           <p className="text-6xl 2xl:text-8xl dark:text-white">
             {currentWeather &&
-              Math.floor(currentWeather.Temperature.Metric.Value)}
+              Math.floor(currentWeather.Temperature[metric ? 'Metric' : 'Imperial'].Value)}
             °
           </p>
         </div>
         <p className="text-2xl 2xl:text-3xl font-light dark:text-white">
           feels like{" "}
           {currentWeather &&
-            Math.floor(currentWeather.ApparentTemperature.Metric.Value)}
+            Math.floor(currentWeather.ApparentTemperature[metric ? 'Metric' : 'Imperial'].Value)}
           °
         </p>
         <p className=" text-2xl 2xl:text-4xl font-light dark:text-white">
@@ -63,7 +67,7 @@ export const CurrentWeatherDetails = () => {
         <div className="flex w-full h-1/2 justify-around items-center">
           <div
             id="weather-data-point"
-            className="w-2/5 h-4/5 bg-primary dark:bg-darkPrimary rounded-lg flex flex-col items-center justify-around"
+            className="w-2/5 h-4/5 bg-primary dark:bg-darkPrimary rounded-lg flex flex-col items-center justify-center gap-2"
           >
             <div className="flex items-center w-full justify-center gap-2">
               <p className="text-md 2xl:text-xl font-light dark:text-white ">Humidity</p>
@@ -75,7 +79,7 @@ export const CurrentWeatherDetails = () => {
           </div>
           <div
             id="weather-data-point"
-            className="w-2/5 h-4/5 bg-primary dark:bg-darkPrimary rounded-lg flex items-center justify-around"
+            className="w-2/5 h-4/5 bg-primary dark:bg-darkPrimary rounded-lg flex items-center justify-center gap-2"
           >
             <div className="flex flex-col justify-center items-center">
               <img className="w-4 2xl:w-6 dark:invert" src={Sunrise} alt="sunrise icon"/>
@@ -96,7 +100,7 @@ export const CurrentWeatherDetails = () => {
         <div className="flex w-full h-1/2 justify-around items-center">
           <div
             id="weather-data-point"
-            className="w-2/5 h-4/5 bg-primary dark:bg-darkPrimary rounded-lg flex flex-col items-center justify-around"
+            className="w-2/5 h-4/5 bg-primary dark:bg-darkPrimary rounded-lg flex flex-col items-center justify-center gap-2"
           >
             <div className="flex items-center w-full justify-center gap-2">
               <p className="text-md 2xl:text-xl font-light dark:text-white">UV index</p>
@@ -108,14 +112,14 @@ export const CurrentWeatherDetails = () => {
           </div>
           <div
             id="weather-data-point"
-            className="w-2/5 h-4/5 bg-primary dark:bg-darkPrimary rounded-lg flex flex-col items-center justify-around"
+            className="w-2/5 h-4/5 bg-primary dark:bg-darkPrimary rounded-lg flex flex-col items-center justify-center gap-2"
           >
             <div className="flex items-center w-full justify-center gap-2">
               <p className="text-md 2xl:text-xl font-light dark:text-white">Wind Speed</p>
               <img className="w-4 2xl:w-6  dark:invert" src={Wind} alt="wind speed icon" />
             </div>
             <p className="font-light text-md 2xl:text-xl dark:text-white">
-              {currentWeather && currentWeather.WindSpeed.Metric.Value}
+              {currentWeather && currentWeather.WindSpeed[metric ? 'Metric' : 'Imperial'].Value}{metric ? 'km/h' : 'mph'}
             </p>
           </div>
         </div>

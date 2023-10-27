@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const currentWeatherSlice = createSlice({
   name: "currentWeather",
   initialState: {
-    city:'',
-    key:'',
+    city: "",
+    key: "",
     data: null,
     loading: false,
     error: null,
   },
   reducers: {
-    fetchCurrentWeatherStart: (state , action) => {
+    fetchCurrentWeatherStart: (state, action) => {
       state.city = action.payload.city;
       state.key = action.payload.key;
       state.loading = true;
@@ -27,6 +27,9 @@ const currentWeatherSlice = createSlice({
   },
 });
 
-export const { fetchCurrentWeatherStart, fetchCurrentWeatherSuccess, fetchCurrentWeatherFailure } =
-currentWeatherSlice.actions;
+export const {
+  fetchCurrentWeatherStart,
+  fetchCurrentWeatherSuccess,
+  fetchCurrentWeatherFailure,
+} = currentWeatherSlice.actions;
 export default currentWeatherSlice.reducer;

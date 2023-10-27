@@ -11,11 +11,11 @@ export const Forecast = () => {
   >
 
 {weatherForecast && weatherForecast.map((forecast , index) => {
-        return <div key={index} className='rounded-xl bg-primary dark:bg-darkPrimary h-5/6 w-1/6 flex flex-col justify-around items-center p-4'>
-            <p className='text-lg font-light dark:text-white'>{getReadableDate(forecast.Date)}</p>
-            <img alt='forecast icon' className="w-24 drop-shadow-sm" src={require(`../assets/weather-icons/${forecast.iconNumber}.png`)}/>
-            <p className='text-lg font-light dark:text-white'>{forecast.Text}</p>
-            <p className='text-xl dark:text-white'>{Math.floor(forecast.Temperature)}°</p>
+        return <div key={index} className='rounded-xl bg-primary dark:bg-darkPrimary h-5/6 w-full mt-4 lg:mt-0 lg:w-1/6 flex flex-col justify-around items-center p-4'>
+            <p className='text-md 2xl:text-lg font-light dark:text-white'>{getReadableDate(forecast.Date)}</p>
+            <img alt='forecast icon' className="w-14 2xl:w-24 drop-shadow-sm" src={require(`../assets/weather-icons/${forecast.iconNumber}.png`)}/>
+            <p className='text-md 2xl:text-lg font-light dark:text-white'>{forecast.Text}</p>
+            <p className='text-lg 2xl:text-xl dark:text-white'>{Math.floor(forecast.Temperature)}°</p>
         </div>
     })}
   </div>

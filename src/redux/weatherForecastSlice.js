@@ -23,6 +23,9 @@ const weatherForecastSlice = createSlice({
   },
 });
 
-export const { fetchWeatherForecastStart, fetchWeatherForecastSuccess, fetchWeatherForecastFailure } =
-weatherForecastSlice.actions;
+export const {
+  fetchWeatherForecastStart,
+  fetchWeatherForecastSuccess,
+  fetchWeatherForecastFailure,
+} = weatherForecastSlice.actions;
 export default weatherForecastSlice.reducer;

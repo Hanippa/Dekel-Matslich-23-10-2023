@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const favoritesSlice = createSlice({
-  name: 'favorites',
+  name: "favorites",
   initialState: {
     favorites: [],
   },
@@ -10,7 +10,9 @@ const favoritesSlice = createSlice({
       state.favorites.push(action.payload);
     },
     removeFavorite: (state, action) => {
-      state.favorites = state.favorites.filter((item) => item.key !== action.payload.key);
+      state.favorites = state.favorites.filter(
+        (item) => item.key !== action.payload.key
+      );
     },
   },
 });

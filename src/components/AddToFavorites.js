@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect , useState } from "react";
 import Star from "../assets/utility-icons/star.svg";
+import StarFull from "../assets/utility-icons/star-full.svg";
 import { addFavorite, removeFavorite, selectFavorites } from "../redux/favoritesSlice";
 
 export default function AddToFavorites({ item }) {
@@ -24,7 +25,7 @@ export default function AddToFavorites({ item }) {
   };
 
   return (
-    <div className="flex justify-center items-center absolute right-4 top-2 gap-2" onClick={handleFavorite}>
+    <div className="flex justify-center items-center absolute right-4 top-2 gap-2 cursor-pointer" onClick={handleFavorite}>
       {!isFavorite ? (
         <>
           <p className="text-sm 2xl:text-lg font-light dark:text-white">favorite</p>
@@ -33,7 +34,7 @@ export default function AddToFavorites({ item }) {
       ) : (
         <>
           <p className="text-sm 2xl:text-lg font-light dark:text-white">unfavorite</p>
-          <img className="w-4 dark:invert" src={Star} alt="star icon"/>
+          <img className="w-4" src={StarFull} alt="star icon"/>
         </>
       )}
     </div>

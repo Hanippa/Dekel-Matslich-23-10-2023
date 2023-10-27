@@ -9,12 +9,12 @@ import {
   fetchWeatherForecastStart,
   fetchWeatherForecastSuccess,
 } from "./weatherForecastSlice";
-import getShortenedDay from '../helperFunctions/dateFunctions/getShortenedDay';
+import getShortenedDay from "../helperFunctions/dateFunctions/getShortenedDay";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const fetchCurrentWeather = (cityKey, cityName) => async (dispatch) => {
-  dispatch(fetchCurrentWeatherStart({ city :cityName , key :cityKey}));
+  dispatch(fetchCurrentWeatherStart({ city: cityName, key: cityKey }));
   fetch(
     `${BASE_URL}/currentconditions/v1/${cityKey}?apikey=${API_KEY}&metric=${true}&details=true`
   )
@@ -30,9 +30,9 @@ export const fetchCurrentWeather = (cityKey, cityName) => async (dispatch) => {
         iconNumber: currentWeatherData[0].WeatherIcon,
         UVindex: currentWeatherData[0].UVIndexText,
         ApparentTemperature: currentWeatherData[0].ApparentTemperature,
-        Text:currentWeatherData[0].WeatherText,
-        Humidity : currentWeatherData[0].RelativeHumidity,
-        WindSpeed : currentWeatherData[0].Wind.Speed,
+        Text: currentWeatherData[0].WeatherText,
+        Humidity: currentWeatherData[0].RelativeHumidity,
+        WindSpeed: currentWeatherData[0].Wind.Speed,
       };
       dispatch(fetchCurrentWeatherSuccess(FilteredData));
     })
@@ -41,10 +41,10 @@ export const fetchCurrentWeather = (cityKey, cityName) => async (dispatch) => {
     });
 };
 
-export const fetchWeatherForecast = (cityKey) => async (dispatch) => {
+export const fetchWeatherForecast = (cityKey, metric) => async (dispatch) => {
   dispatch(fetchWeatherForecastStart());
   fetch(
-    `${BASE_URL}/forecasts/v1/daily/5day/${cityKey}?apikey=${API_KEY}&metric=${true}&details=true`
+    `${BASE_URL}/forecasts/v1/daily/5day/${cityKey}?apikey=${API_KEY}&metric=${metric}&details=true`
   )
     .then((response) => {
       if (!response.ok) {
@@ -53,17 +53,19 @@ export const fetchWeatherForecast = (cityKey) => async (dispatch) => {
       return response.json();
     })
     .then((weatherForecastData) => {
-      const FilteredData = weatherForecastData.DailyForecasts.map((forecast) => {
-        return {
-          Date: forecast.Date,
-          Day:getShortenedDay(forecast.Date),
-          Temperature : forecast.Temperature.Maximum.Value,
-          iconNumber : forecast.Day.Icon,
-          Text: forecast.Day.ShortPhrase,
-          Sunrise : forecast.Sun.Rise,
-          Sunset : forecast.Sun.Set
+      const FilteredData = weatherForecastData.DailyForecasts.map(
+        (forecast) => {
+          return {
+            Date: forecast.Date,
+            Day: getShortenedDay(forecast.Date),
+            Temperature: forecast.Temperature.Maximum.Value,
+            iconNumber: forecast.Day.Icon,
+            Text: forecast.Day.ShortPhrase,
+            Sunrise: forecast.Sun.Rise,
+            Sunset: forecast.Sun.Set,
+          };
         }
-      });
+      );
       dispatch(fetchWeatherForecastSuccess(FilteredData));
     })
     .catch((error) => {

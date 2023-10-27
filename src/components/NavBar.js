@@ -17,11 +17,13 @@ const NavBar = () => {
         >
           <img className="w-20 px-4" src={Logo} alt="abra weather logo" />
           <p className="text-2xl dark:text-white">abra weather</p>
+          
         </NavLink>
         <div
           id="menu"
           className="absolute left-0 md:relative md:w-auto border md:rounded-none items-center md:py-0 py-5 md:shadow-none shadow-xl border-gray-200 md:border-transparent w-full z-40 md:flex md:bg-transparent md:top-auto top-0 md:mt-0 mt-14 bg-white dark:bg-darkSecondary hidden"
         >
+          <a href="https://dekel.bio" rel="noreferrer" target="_blank" className="text-center ml-4 text-sm dark:text-white">by Dekel Matslich</a>
                 <DarkModeSwitch/>
           <nav className="md:space-x-6 lg:space-x-6 flex md:flex-row flex-col h-full font-medium">
             <NavLink to={"/"} className="group flex justify-center items-center cursor-pointer">

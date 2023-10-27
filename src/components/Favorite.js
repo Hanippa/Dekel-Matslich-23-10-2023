@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { fetchCurrentWeather , fetchWeatherForecast } from "../redux/actions";
+import { selectMetric } from "../redux/metricSlice";
 
 export const Favorite = ({ name, Citykey }) => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const API_KEY = process.env.REACT_APP_API_KEY;
 
   const [currentWeather, setCurrentWeather] = useState(null);
+  const metric = useSelector(selectMetric);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,7 +21,7 @@ export const Favorite = ({ name, Citykey }) => {
         Citykey,name
       )
     );
-    dispatch(fetchWeatherForecast(Citykey));
+    dispatch(fetchWeatherForecast(Citykey, metric));
   };
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export const Favorite = ({ name, Citykey }) => {
         {currentWeather && currentWeather.Text}
       </p>
       <p className="font-light text-lg dark:text-white">
-        {currentWeather && currentWeather.Temperature.Metric.Value}
+        {currentWeather && currentWeather.Temperature[metric ? 'Metric' : 'Imperial'].Value}°
       </p>
     </div>
   );
