@@ -107,7 +107,7 @@ function App() {
   }, [currentWeatherLoading]);
 
   useEffect(() => {
-    if (currentWeatherError) {
+    if (weatherForecastError) {
       toast.error("Failed to load weather forecast 😓");
     }
   }, [weatherForecastError]);
