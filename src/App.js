@@ -120,6 +120,7 @@ function App() {
     }
   }, [currentWeatherError]);
 
+  
   return (
     <BrowserRouter>
       <NavBar />
