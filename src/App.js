@@ -119,7 +119,6 @@ function App() {
       toast.error("Failed to load current weather 😟");
     }
   }, [currentWeatherError]);
-
   
   return (
     <BrowserRouter>
